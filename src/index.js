@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import App from './App';
 import './index.css';
 
@@ -16,7 +17,9 @@ prepare().then(() => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App />
+        <QueryClientProvider client={new QueryClient()}>
+          <App />
+        </QueryClientProvider>
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
