@@ -9,3 +9,14 @@ export const useUser = () =>
     }
     return json;
   });
+
+export const useCryptocurrency = ({ current, pageSize }) =>
+  useQuery(['cryptocurrency', { current, pageSize }], async ({ queryKey }) => {
+    const { current, pageSize } = queryKey[1];
+    const response = await fetch(`/api/cryptocurrency?start=${current}&limit=${pageSize}`);
+    const json = await response.json();
+    if (json.error_code) {
+      throw new Error(json.error_message);
+    }
+    return json;
+  });
