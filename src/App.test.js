@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
 import App from './App';
 
 test('renders layout properly', async () => {
@@ -9,9 +10,33 @@ test('renders layout properly', async () => {
     </MemoryRouter>
   );
 
+  const menuOptionCrypto = screen.getByText('Cryptocurrencies');
+  const menuOptionConverter = screen.getByText('Converter');
+  const menuOptionChart = screen.getByText('Charts');
+  const menuOptionOptional = screen.getByText('Optional');
+
+  //logo
   expect(screen.getByAltText('empirical logo')).toBeVisible();
-  expect(screen.getByText('Cryptocurrencies')).toBeVisible();
-  expect(screen.getByText('Converter')).toBeVisible();
-  expect(screen.getByText('Charts')).toBeVisible();
-  expect(screen.getByText('Optional')).toBeVisible();
+  //menu
+  expect(menuOptionCrypto).toBeVisible();
+  expect(menuOptionConverter).toBeVisible();
+  expect(menuOptionChart).toBeVisible();
+  expect(menuOptionOptional).toBeVisible();
+
+  //header
+  userEvent.click(menuOptionConverter);
+  expect(screen.getByText('Convert')).toBeVisible();
+  expect(screen.getByText('Convert your coins and get rich')).toBeVisible();
+
+  userEvent.click(menuOptionChart);
+  expect(screen.getByText('Chart')).toBeVisible();
+  expect(screen.getByText('View nice graphs and decide what to buy')).toBeVisible();
+
+  userEvent.click(menuOptionOptional);
+  expect(screen.getByText('🤯')).toBeVisible();
+  expect(screen.getByText('Something nice to play with?')).toBeVisible();
+
+  userEvent.click(menuOptionCrypto);
+  expect(screen.getByText('Cryptocurrency')).toBeVisible();
+  expect(screen.getByText('Check the Crypto world here')).toBeVisible();
 });

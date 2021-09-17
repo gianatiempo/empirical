@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, PageHeader } from 'antd';
 import { DollarOutlined, SwapOutlined, LineChartOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
 import logo from './assets/logo.jpeg';
@@ -14,8 +14,15 @@ const { Content, Sider, Header } = Layout;
 
 const layoutStyle = { height: '100vh' };
 const logoStyle = { height: 44, margin: '10px 6px' };
-const headerStyle = { backgroundColor: 'white', padding: '0 24px' };
+const headerStyle = { backgroundColor: 'white', padding: '0 24px', display: 'flex', justifyContent: 'space-between' };
 const contentStyle = { margin: '24px', overflow: 'auto' };
+
+const headerTitles = {
+  '/': ['Cryptocurrency', 'Check the Crypto world here'],
+  '/converter': ['Convert', 'Convert your coins and get rich'],
+  '/chart': ['Chart', 'View nice graphs and decide what to buy'],
+  '/optional': ['🤯', 'Something nice to play with?']
+};
 
 const App = () => {
   const history = useHistory();
@@ -42,6 +49,7 @@ const App = () => {
       </Sider>
       <Layout style={layoutStyle}>
         <Header style={headerStyle}>
+          <PageHeader title={headerTitles[location.pathname][0]} subTitle={headerTitles[location.pathname][1]} />
           <User />
         </Header>
         <Content style={contentStyle}>
