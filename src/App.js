@@ -1,19 +1,30 @@
+import React, { Suspense } from 'react';
 import { Layout, Menu } from 'antd';
 import { DollarOutlined, SwapOutlined, LineChartOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
-import { Chart, Converter, Cryptocurrency, Optional } from './pages';
 import logo from './assets/logo.jpeg';
+import { User, Spinner } from './components';
 
-const { Content, Sider } = Layout;
+const Chart = React.lazy(() => import('./pages/Chart/Chart'));
+const Converter = React.lazy(() => import('./pages/Converter/Converter'));
+const Cryptocurrency = React.lazy(() => import('./pages/Cryptocurrency/Cryptocurrency'));
+const Optional = React.lazy(() => import('./pages/Optional/Optional'));
+
+const { Content, Sider, Header } = Layout;
+
+const layoutStyle = { height: '100vh' };
+const logoStyle = { height: 44, margin: '10px 6px' };
+const headerStyle = { backgroundColor: 'white', padding: '0 24px' };
+const contentStyle = { margin: '24px', overflow: 'auto' };
 
 const App = () => {
   const history = useHistory();
   const location = useLocation();
 
   return (
-    <Layout style={{ height: '100vh' }}>
+    <Layout style={layoutStyle}>
       <Sider theme='light'>
-        <img src={logo} alt='empirical logo' style={{ height: 44, margin: '8px 6px' }} />
+        <img src={logo} alt='empirical logo' style={logoStyle} />
         <Menu defaultSelectedKeys={[location.pathname]} mode='inline'>
           <Menu.Item key='/' icon={<DollarOutlined />} onClick={() => history.push('/')}>
             Cryptocurrencies
@@ -29,14 +40,19 @@ const App = () => {
           </Menu.Item>
         </Menu>
       </Sider>
-      <Layout style={{ height: '100vh' }}>
-        <Content style={{ margin: '24px', overflow: 'auto' }}>
-          <Switch>
-            <Route path='/' exact component={Cryptocurrency} />
-            <Route path='/converter' component={Converter} />
-            <Route path='/chart' component={Chart} />
-            <Route path='/optional' component={Optional} />
-          </Switch>
+      <Layout style={layoutStyle}>
+        <Header style={headerStyle}>
+          <User />
+        </Header>
+        <Content style={contentStyle}>
+          <Suspense fallback={<Spinner height={'calc(100vh - 48px)'} />}>
+            <Switch>
+              <Route path='/' exact component={Cryptocurrency} />
+              <Route path='/converter' component={Converter} />
+              <Route path='/chart' component={Chart} />
+              <Route path='/optional' component={Optional} />
+            </Switch>
+          </Suspense>
         </Content>
       </Layout>
     </Layout>
