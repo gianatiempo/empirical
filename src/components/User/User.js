@@ -8,7 +8,7 @@ const cardStyle = { padding: '16px 0', display: 'flex', alignItems: 'center', ju
 const avatarStyle = { margin: '0 8px' };
 const pStyle = { marginBottom: 0 };
 
-const UserCard = () => {
+const User = () => {
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -27,4 +27,4 @@ const UserCard = () => {
   );
 };
 
-export default UserCard;
+export default User;

@@ -5,6 +5,17 @@
 import '@testing-library/jest-dom';
 import { server } from './mocks/server.js';
 
+// fix for https://github.com/ant-design/ant-design/issues/21096
+global.matchMedia =
+  global.matchMedia ||
+  function () {
+    return {
+      matches: false,
+      addListener: jest.fn(),
+      removeListener: jest.fn()
+    };
+  };
+
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());
 

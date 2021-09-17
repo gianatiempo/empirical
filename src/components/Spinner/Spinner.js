@@ -6,7 +6,7 @@ const spinStyle = { display: 'flex', alignItems: 'center' };
 
 const Spinner = ({ size = 128, height = '100vh' }) => {
   const indicator = <LoadingOutlined style={{ ...loadingIconStyle, fontSize: size }} spin />;
-  return <Spin style={{ ...spinStyle, height }} indicator={indicator} />;
+  return <Spin style={{ ...spinStyle, height }} indicator={indicator} data-testid='spinner' />;
 };
 
 export default Spinner;
