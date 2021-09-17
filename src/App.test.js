@@ -1,12 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import App from './App';
 
 test('renders layout properly', async () => {
+  const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } });
+  render();
   render(
     <MemoryRouter>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </MemoryRouter>
   );
 

@@ -1,5 +1,6 @@
 import { Avatar, Card, Typography } from 'antd';
-import { useState, useEffect } from 'react';
+import { UserOutlined } from '@ant-design/icons';
+import { useUser } from '../../hooks/useData';
 import Spinner from '../Spinner/Spinner';
 
 const { Paragraph } = Typography;
@@ -8,22 +9,34 @@ const cardStyle = { padding: '16px 0', display: 'flex', alignItems: 'center', ju
 const avatarStyle = { margin: '0 8px' };
 const pStyle = { marginBottom: 0 };
 
+const UserContainer = ({ children }) => (
+  <Card bordered={false} bodyStyle={cardStyle}>
+    {children}
+  </Card>
+);
+
 const User = () => {
-  const [user, setUser] = useState();
+  const { isLoading, isError, data } = useUser();
 
-  useEffect(() => {
-    fetch('https://randomuser.me/api/')
-      .then(response => response.json())
-      .then(data => setUser(data.results[0]));
-  }, []);
+  if (isLoading) {
+    return <Spinner size={32} height={100} />;
+  }
 
-  return user ? (
-    <Card bordered={false} bodyStyle={cardStyle}>
-      <Avatar src={user.picture.thumbnail} data-testid='user-avatar' style={avatarStyle} />
+  if (isError) {
+    return (
+      <UserContainer>
+        <Avatar style={{ backgroundColor: '#FF0000' }} icon={<UserOutlined />} data-testid='user-avatar-error' />
+      </UserContainer>
+    );
+  }
+
+  const user = data.results[0];
+
+  return (
+    <UserContainer>
+      <Avatar src={user.picture.thumbnail} style={avatarStyle} data-testid='user-avatar' />
       <Paragraph style={pStyle}>{`${user.name.title} ${user.name.first} ${user.name.last}`} </Paragraph>
-    </Card>
-  ) : (
-    <Spinner size={32} height={100} />
+    </UserContainer>
   );
 };
 

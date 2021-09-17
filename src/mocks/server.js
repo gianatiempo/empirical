@@ -1,4 +1,7 @@
 import { setupServer } from 'msw/node';
 import { randomUserHandlers } from './handlers/randomuser';
 
-export const server = setupServer(...randomUserHandlers);
+const server = setupServer(...randomUserHandlers);
+
+export * from 'msw';
+export { server };
