@@ -1,7 +1,7 @@
 import { Table, Pagination } from 'antd';
 import { useState } from 'react';
 import { useCryptocurrency } from '../../hooks/useData';
-import { Error } from '../../components';
+import { Spinner, Error } from '../../components';
 
 const paginationStyle = { padding: '10px 0', float: 'right' };
 
@@ -17,6 +17,10 @@ const Cryptocurrency = () => {
     }
   };
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   if (isError) {
     return <Error message={error.message} />;
   }
@@ -25,11 +29,10 @@ const Cryptocurrency = () => {
     <>
       <Table
         columns={columns}
-        dataSource={data?.data ?? []}
+        dataSource={data.data}
         rowKey='id'
         size='middle'
         pagination={false}
-        loading={isLoading}
         onChange={onChange}
       />
       <Pagination
@@ -54,7 +57,7 @@ const columns = [
     dataIndex: 'price',
     key: 'price',
     sorter: (a, b) => a - b,
-    render: (_, row) => `$ ${row.quote.USD.price.toFixed(2)}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    render: (_, row) => `${row.quote.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`
   },
   {
     title: '24h %',
@@ -63,7 +66,7 @@ const columns = [
     sorter: (a, b) => a - b,
     render: (_, row) => (
       <span style={{ color: row.quote.USD.percent_change_24h > 0 ? '#3f8600' : '#cf1322' }}>
-        {`${row.quote.USD.percent_change_24h.toFixed(2)}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}%
+        {`${row.quote.USD.percent_change_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}
       </span>
     )
   },
@@ -74,7 +77,7 @@ const columns = [
     sorter: (a, b) => a - b,
     render: (_, row) => (
       <span style={{ color: row.quote.USD.percent_change_7d > 0 ? '#3f8600' : '#cf1322' }}>
-        {`${row.quote.USD.percent_change_7d.toFixed(2)}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}%
+        {`${row.quote.USD.percent_change_7d.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}%
       </span>
     )
   },
@@ -83,21 +86,21 @@ const columns = [
     dataIndex: 'market_cap',
     key: 'market_cap',
     sorter: (a, b) => a - b,
-    render: (_, row) => `$ ${row.quote.USD.market_cap.toFixed(0)}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    render: (_, row) => `${row.quote.USD.market_cap.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`
   },
   {
     title: 'Volume (24h)',
     dataIndex: 'volume_24h',
     key: 'volume_24h',
     sorter: (a, b) => a - b,
-    render: (_, row) => `$ ${row.quote.USD.volume_24h.toFixed(0)}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    render: (_, row) => `${row.quote.USD.volume_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`
   },
   {
     title: 'Circulating Supply',
     dataIndex: 'circulating_supply',
     key: 'circulating_supply',
     sorter: (a, b) => a - b,
-    render: (_, row) => `${row.circulating_supply.toFixed(0)} ${row.symbol}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    render: (_, row) => `${row.circulating_supply.toLocaleString('en-US')} ${row.symbol}`
   }
 ];
 
