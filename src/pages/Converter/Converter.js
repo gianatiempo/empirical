@@ -76,7 +76,7 @@ const Converter = () => {
           <Card bordered={false} bodyStyle={cardStyle}>
             {converted ? (
               <Typography.Title level={3}>
-                {converted.data.quote[conversion.destination].price.toFixed(8)} {conversion.destination}
+                {converted.data.quote[Object.keys(converted.data.quote)[0]].price.toFixed(8)} {conversion.destination}
               </Typography.Title>
             ) : (
               <Typography.Title level={3}>
