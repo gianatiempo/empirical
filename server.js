@@ -18,9 +18,12 @@ app.get('/api/cryptocurrency', async (req, res) => {
 
   const requestOptions = {
     method: 'GET',
-    uri: 'http://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-    headers: { 'X-CMC_PRO_API_KEY': process.env.CMC_API_KEY },
-    qs: { start, limit, convert: 'USD' },
+    uri: 'http://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+    headers: { 'X-CMC_PRO_API_KEY': 'b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c' },
+
+    // uri: 'http://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+    // headers: { 'X-CMC_PRO_API_KEY': process.env.CMC_API_KEY },
+    qs: { start: 1 + (start - 1) * limit, limit: start * limit, convert: 'USD' },
     json: true,
     gzip: true
   };
