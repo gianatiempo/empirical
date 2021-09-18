@@ -617,7 +617,6 @@ export const cryptocurrencyHandlers = [
   }),
 
   rest.get('/api/convert', (req, res, ctx) => {
-    const origin = req.url.searchParams.get('origin');
     const destination = req.url.searchParams.get('destination');
     const amount = req.url.searchParams.get('amount');
     return res(
@@ -631,12 +630,14 @@ export const cryptocurrencyHandlers = [
           notice: null
         },
         data: {
-          id: 1,
-          symbol: origin,
-          name: origin,
-          amount: amount,
-          last_updated: '2021-09-18T19:57:02.000Z',
-          quote: { [`${destination}`]: { price: 28.062789092846057, last_updated: '2021-09-18T19:57:02.000Z' } }
+          [`${destination}`]: {
+            id: 1,
+            symbol: [`${destination}`],
+            name: destination,
+            amount: amount,
+            last_updated: '2021-09-18T19:57:02.000Z',
+            quote: { [`${destination}`]: { price: 28.062789092846057, last_updated: '2021-09-18T19:57:02.000Z' } }
+          }
         }
       })
     );
