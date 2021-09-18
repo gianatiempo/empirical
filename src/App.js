@@ -16,6 +16,7 @@ const layoutStyle = { height: '100vh' };
 const logoStyle = { height: 44, margin: '10px 6px' };
 const headerStyle = { backgroundColor: 'white', padding: '0 24px', display: 'flex', justifyContent: 'space-between' };
 const contentStyle = { margin: '24px', overflow: 'auto' };
+const versionStyle = { margin: '1rem 5rem', position: 'absolute', bottom: 0 };
 
 const headerTitles = {
   '/': ['Cryptocurrency', 'Check the Crypto world here'],
@@ -46,6 +47,7 @@ const App = () => {
             Optional
           </Menu.Item>
         </Menu>
+        <span style={versionStyle}>v{process.env.REACT_APP_VERSION}</span>
       </Sider>
       <Layout style={layoutStyle}>
         <Header style={headerStyle}>
