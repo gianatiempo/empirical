@@ -1,6 +1,6 @@
 {
   "name": "empirical",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@ant-design/charts": "^1.2.13",
@@ -28,7 +28,8 @@
     "dev": "react-scripts start",
     "heroku-postbuild": "react-scripts build",
     "test": "react-scripts test --watchAll=false --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "upload": "npm version patch -git-tag-version false && git push heroku main"
   },
   "jest": {
     "transformIgnorePatterns": [
