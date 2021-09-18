@@ -1,7 +1,7 @@
 import { Table, Pagination } from 'antd';
 import { useState } from 'react';
 import { useCryptocurrency } from '../../hooks/useData';
-import Error from '../../components/Error/Error';
+import { Error } from '../../components';
 
 const paginationStyle = { padding: '10px 0', float: 'right' };
 
