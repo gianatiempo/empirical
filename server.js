@@ -9,6 +9,14 @@ if (process.env.NODE_ENV !== 'production') {
 
 const app = express();
 
+const requestOptionsBase = {
+  method: 'GET',
+  uri: 'http://sandbox-api.coinmarketcap.com/v1/', //uri: 'http://pro-api.coinmarketcap.com/v1/',
+  headers: { 'X-CMC_PRO_API_KEY': 'b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c' }, //headers: { 'X-CMC_PRO_API_KEY': process.env.CMC_API_KEY },
+  json: true,
+  gzip: true
+};
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -16,19 +24,33 @@ app.get('/api/cryptocurrency', async (req, res) => {
   const start = req.query.start || 1;
   const limit = req.query.limit || 10;
 
-  const requestOptions = {
-    method: 'GET',
-    uri: 'http://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-    headers: { 'X-CMC_PRO_API_KEY': 'b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c' },
+  const uri = requestOptionsBase.uri + 'cryptocurrency/listings/latest';
+  const qs = { start: 1 + (start - 1) * limit, limit: start * limit, convert: 'USD' };
 
-    // uri: 'http://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-    // headers: { 'X-CMC_PRO_API_KEY': process.env.CMC_API_KEY },
-    qs: { start: 1 + (start - 1) * limit, limit: start * limit, convert: 'USD' },
-    json: true,
-    gzip: true
-  };
+  const response = await rp({ ...requestOptionsBase, uri, qs }).catch(err => err.error.status);
 
-  const response = await rp(requestOptions).catch(err => err.error.status);
+  res.json(response);
+});
+
+app.get('/api/coin', async (req, res) => {
+  const response = await rp({
+    ...requestOptionsBase,
+    uri: requestOptionsBase.uri + 'cryptocurrency/map?symbol=BTC,ETH,ADA,BNB,USDT,XRP,AVAX,DOT,DOGE,USDC'
+  }).catch(err => err.error.status);
+
+  res.json(response);
+});
+
+app.get('/api/convert', async (req, res) => {
+  const origin = req.query.origin;
+  const destination = req.query.destination;
+  const amount = req.query.amount;
+
+  const uri = requestOptionsBase.uri + 'tools/price-conversion';
+  const qs = { amount, symbol: origin, convert: destination };
+
+  const response = await rp({ ...requestOptionsBase, uri, qs }).catch(err => err.error.status);
+
   res.json(response);
 });
 
