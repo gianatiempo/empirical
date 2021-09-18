@@ -43,7 +43,7 @@ const Converter = () => {
                 value={conversion.origin}
                 placeholder='Origin COIN'
                 onChange={value => setConversion({ ...conversion, origin: value })}>
-                {coins.data.map(coin => (
+                {coins.data[0].map(coin => (
                   <Option key={coin.symbol}>
                     {coin.name} - {coin.symbol}
                   </Option>
@@ -59,7 +59,7 @@ const Converter = () => {
                 value={conversion.destination}
                 placeholder='Destination COIN'
                 onChange={value => setConversion({ ...conversion, destination: value })}>
-                {coins.data.map(coin => (
+                {coins.data[0].map(coin => (
                   <Option key={coin.symbol}>
                     {coin.name} - {coin.symbol}
                   </Option>
