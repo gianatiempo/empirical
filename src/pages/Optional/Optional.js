@@ -29,8 +29,8 @@ const Optional = () => {
             title={
               <Statistic
                 title='Minute Consumption'
-                value={usage.current_minute.requests_made.toLocaleString()}
-                suffix={`/ ${usage.current_minute.requests_left.toLocaleString()}`}
+                value={usage.current_minute.requests_made}
+                suffix={`/ ${plan.rate_limit_minute}`}
               />
             }
             extra={<Statistic title='Current Time' value={new Date().toLocaleTimeString()} />}
@@ -40,7 +40,7 @@ const Optional = () => {
             title={
               <Statistic
                 title='Daily Consumption'
-                value={usage.current_day.credits_used.toLocaleString()}
+                value={usage.current_day.credits_used ?? 0}
                 suffix={`/ ${plan.credit_limit_daily.toLocaleString()}`}
               />
             }
@@ -51,7 +51,7 @@ const Optional = () => {
             title={
               <Statistic
                 title='Monthly Consumption'
-                value={usage.current_month.credits_used.toLocaleString()}
+                value={usage.current_month.credits_used ?? 0}
                 suffix={`/ ${plan.credit_limit_monthly.toLocaleString()}`}
               />
             }
