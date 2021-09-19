@@ -55,7 +55,7 @@ const App = () => {
           <User />
         </Header>
         <Content style={contentStyle}>
-          <Suspense fallback={<Spinner height={'calc(100vh - 48px)'} />}>
+          <Suspense fallback={<Spinner />}>
             <Switch>
               <Route path='/' exact component={Cryptocurrency} />
               <Route path='/converter' component={Converter} />
