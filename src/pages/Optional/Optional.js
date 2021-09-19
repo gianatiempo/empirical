@@ -4,6 +4,10 @@ import { Error, Spinner } from '../../components';
 
 const { Countdown } = Statistic;
 
+const rowStyle = { margin: 0 };
+const spaceStyle = { float: 'right' };
+const cardStyle = { display: 'none' };
+
 const Optional = () => {
   // const [conversion, setConversion] = useState({ origin: null, destination: null, amount: 0 });
   const { isLoading, isError, data, error } = useOptional();
@@ -21,11 +25,11 @@ const Optional = () => {
   const usage = data.data.usage;
 
   return (
-    <Row gutter={16} style={{ margin: 0 }}>
-      <Col span={5} offset={19}>
-        <Space direction='vertical'>
+    <Row gutter={16} style={rowStyle}>
+      <Col span={6} offset={18}>
+        <Space direction='vertical' style={spaceStyle}>
           <Card
-            bodyStyle={{ display: 'none' }}
+            bodyStyle={cardStyle}
             title={
               <Statistic
                 title='Minute Consumption'
@@ -36,7 +40,7 @@ const Optional = () => {
             extra={<Statistic title='Current Time' value={new Date().toLocaleTimeString()} />}
           />
           <Card
-            bodyStyle={{ display: 'none' }}
+            bodyStyle={cardStyle}
             title={
               <Statistic
                 title='Daily Consumption'
@@ -47,7 +51,7 @@ const Optional = () => {
             extra={<Countdown title='Reset:' value={new Date(plan.credit_limit_daily_reset_timestamp)} />}
           />
           <Card
-            bodyStyle={{ display: 'none' }}
+            bodyStyle={cardStyle}
             title={
               <Statistic
                 title='Monthly Consumption'

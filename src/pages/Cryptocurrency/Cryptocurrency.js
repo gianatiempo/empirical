@@ -49,6 +49,9 @@ const Cryptocurrency = () => {
   );
 };
 
+const increaseValueColor = { color: '#3f8600' };
+const decreaseValueColor = { color: '#cf1322' };
+
 const columns = [
   { title: '#', dataIndex: 'cmc_rank', key: 'cmc_rank' },
   { title: 'Name', dataIndex: 'name', key: 'name', sorter: (a, b) => a - b, sortDirections: ['ascend', 'descend'] },
@@ -65,7 +68,7 @@ const columns = [
     key: 'percent_change_24h',
     sorter: (a, b) => a - b,
     render: (_, row) => (
-      <span style={{ color: row.quote.USD.percent_change_24h > 0 ? '#3f8600' : '#cf1322' }}>
+      <span style={row.quote.USD.percent_change_24h > 0 ? increaseValueColor : decreaseValueColor}>
         {`${row.quote.USD.percent_change_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}
       </span>
     )
@@ -76,7 +79,7 @@ const columns = [
     key: 'percent_change_7d',
     sorter: (a, b) => a - b,
     render: (_, row) => (
-      <span style={{ color: row.quote.USD.percent_change_7d > 0 ? '#3f8600' : '#cf1322' }}>
+      <span style={row.quote.USD.percent_change_7d > 0 ? increaseValueColor : decreaseValueColor}>
         {`${row.quote.USD.percent_change_7d.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}%
       </span>
     )

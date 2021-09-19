@@ -7,6 +7,7 @@ import { Error, Spinner } from '../../components';
 const { Option } = Select;
 
 const cardStyle = { display: 'flex', flexDirection: 'column', marginBottom: 8 };
+const inputStyle = { width: '100%' };
 
 const Converter = () => {
   const [conversion, setConversion] = useState({ origin: null, destination: null, amount: 0 });
@@ -31,7 +32,7 @@ const Converter = () => {
           <Row>
             <Col span={10}>
               <InputNumber
-                style={{ width: '100%' }}
+                style={inputStyle}
                 min='0'
                 step='0.00000001'
                 stringMode
@@ -42,7 +43,7 @@ const Converter = () => {
           <Row>
             <Col span={10}>
               <Select
-                style={{ width: '100%' }}
+                style={inputStyle}
                 value={conversion.origin}
                 placeholder='Origin COIN'
                 onChange={value => setConversion({ ...conversion, origin: value })}>
@@ -58,7 +59,7 @@ const Converter = () => {
             </Col>
             <Col span={10} offset={1}>
               <Select
-                style={{ width: '100%' }}
+                style={inputStyle}
                 value={conversion.destination}
                 placeholder='Destination COIN'
                 onChange={value => setConversion({ ...conversion, destination: value })}>

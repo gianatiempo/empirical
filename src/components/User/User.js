@@ -8,6 +8,7 @@ const { Paragraph } = Typography;
 const cardStyle = { padding: '16px 0', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' };
 const avatarStyle = { margin: '0 8px' };
 const pStyle = { marginBottom: 0 };
+const errorAvatarStyle = { backgroundColor: '#FF0000' };
 
 const UserContainer = ({ children }) => (
   <Card bordered={false} bodyStyle={cardStyle}>
@@ -25,7 +26,7 @@ const User = () => {
   if (isError) {
     return (
       <UserContainer>
-        <Avatar style={{ backgroundColor: '#FF0000' }} icon={<UserOutlined />} data-testid='user-avatar-error' />
+        <Avatar style={errorAvatarStyle} icon={<UserOutlined />} data-testid='user-avatar-error' />
       </UserContainer>
     );
   }
