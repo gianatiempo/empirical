@@ -9,9 +9,7 @@ const spaceStyle = { float: 'right' };
 const cardStyle = { display: 'none' };
 
 const Optional = () => {
-  // const [conversion, setConversion] = useState({ origin: null, destination: null, amount: 0 });
   const { isLoading, isError, data, error } = useOptional();
-  // const { data: converted, refetch } = useConversion(conversion);
 
   if (isLoading) {
     return <Spinner />;
