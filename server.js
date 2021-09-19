@@ -20,6 +20,7 @@ const requestOptionsBase = {
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'build')));
 
+//cryptocurrency page
 app.get('/api/cryptocurrency', async (req, res) => {
   const start = req.query.start || 1;
   const limit = req.query.limit || 10;
@@ -32,6 +33,7 @@ app.get('/api/cryptocurrency', async (req, res) => {
   res.json(response);
 });
 
+//convert page
 app.get('/api/coin', async (req, res) => {
   const response = await rp({
     ...requestOptionsBase,
@@ -50,6 +52,15 @@ app.get('/api/convert', async (req, res) => {
   const qs = { amount, symbol: origin, convert: destination };
 
   const response = await rp({ ...requestOptionsBase, uri, qs }).catch(err => err.error.status);
+
+  res.json(response);
+});
+
+//optional page
+app.get('/api/optional', async (req, res) => {
+  const uri = requestOptionsBase.uri + 'key/info';
+
+  const response = await rp({ ...requestOptionsBase, uri }).catch(err => err.error.status);
 
   res.json(response);
 });

@@ -1,6 +1,7 @@
 import { rest } from 'msw';
 
 export const cryptocurrencyHandlers = [
+  //cryptocurrency page
   rest.get('/api/cryptocurrency', (req, res, ctx) => {
     return res(
       ctx.json({
@@ -475,6 +476,8 @@ export const cryptocurrencyHandlers = [
       })
     );
   }),
+
+  //convert page
   rest.get('/api/coin', (req, res, ctx) => {
     return res(
       ctx.json({
@@ -638,6 +641,46 @@ export const cryptocurrencyHandlers = [
             last_updated: '2021-09-18T19:57:02.000Z',
             quote: { [`${destination}`]: { price: 28.062789092846057, last_updated: '2021-09-18T19:57:02.000Z' } }
           }
+        }
+      })
+    );
+  }),
+
+  //optional page
+  rest.get('/api/optional', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        data: {
+          plan: {
+            credit_limit_daily: 4000,
+            credit_limit_daily_reset: 'In 19 hours, 56 minutes',
+            credit_limit_daily_reset_timestamp: '2021-09-29T00:00:00.000Z',
+            credit_limit_monthly: 120000,
+            credit_limit_monthly_reset: 'In 3 days, 19 hours, 56 minutes',
+            credit_limit_monthly_reset_timestamp: '2021-10-01T00:00:00.000Z',
+            rate_limit_minute: 60
+          },
+          usage: {
+            current_minute: {
+              requests_made: 1,
+              requests_left: 59
+            },
+            current_day: {
+              credits_used: 1,
+              credits_left: 3999
+            },
+            current_month: {
+              credits_used: 1,
+              credits_left: 119999
+            }
+          }
+        },
+        status: {
+          timestamp: '2021-09-17T08:09:59.204Z',
+          error_code: 0,
+          error_message: '',
+          elapsed: 10,
+          credit_count: 1
         }
       })
     );

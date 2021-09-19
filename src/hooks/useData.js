@@ -15,15 +15,19 @@ export const useUser = () =>
   );
 
 export const useCryptocurrency = ({ current, pageSize }) =>
-  useQuery(['cryptocurrency', { current, pageSize }], async ({ queryKey }) => {
-    const { current, pageSize } = queryKey[1];
-    const response = await fetch(`/api/cryptocurrency?start=${current}&limit=${pageSize}`);
-    const json = await response.json();
-    if (json.error_code) {
-      throw new Error(json.error_message);
-    }
-    return json;
-  });
+  useQuery(
+    ['cryptocurrency', { current, pageSize }],
+    async ({ queryKey }) => {
+      const { current, pageSize } = queryKey[1];
+      const response = await fetch(`/api/cryptocurrency?start=${current}&limit=${pageSize}`);
+      const json = await response.json();
+      if (json.error_code) {
+        throw new Error(json.error_message);
+      }
+      return json;
+    },
+    { refetchOnWindowFocus: false }
+  );
 
 export const useCoin = () =>
   useQuery(
@@ -54,4 +58,18 @@ export const useConversion = ({ origin, destination, amount }) =>
       refetchOnWindowFocus: false,
       enabled: false // turned off by default, manual refetch is needed
     }
+  );
+
+export const useOptional = () =>
+  useQuery(
+    'convert',
+    async () => {
+      const response = await fetch(`/api/optional`);
+      const json = await response.json();
+      if (json.error) {
+        throw new Error('Fetch Optional response was not ok');
+      }
+      return json;
+    },
+    { refetchOnWindowFocus: false }
   );
