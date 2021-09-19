@@ -1,5 +1,4 @@
 import { Statistic, Card, Row, Col, Space } from 'antd';
-import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { useOptional } from '../../hooks/useData';
 import { Error, Spinner } from '../../components';
 
