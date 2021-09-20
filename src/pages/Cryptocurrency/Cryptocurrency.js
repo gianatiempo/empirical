@@ -8,14 +8,12 @@ const increaseValueColor = { color: '#3f8600' };
 const decreaseValueColor = { color: '#cf1322' };
 
 const Cryptocurrency = () => {
-  const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
+  const [pagination, setPagination] = useState({ current: 1, pageSize: 10, sort: null, order: null });
   const { isLoading, isError, data, error } = useCryptocurrency(pagination);
 
   const onChange = (paginationData, filtersData, sorter, extra) => {
-    console.log(extra.action);
     if (extra.action === 'sort') {
-      console.log(extra.action, sorter.field, sorter.order);
-      // setPagination({ ...pagination, sort: sorter.columnKey, order: sorter.order });
+      setPagination({ ...pagination, sort: sorter.columnKey, order: sorter.order });
     }
   };
 
@@ -51,14 +49,12 @@ const columns = [
     title: 'Price',
     dataIndex: 'price',
     key: 'price',
-    sorter: (a, b) => a - b,
     render: (_, row) => `${row.quote.USD.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`
   },
   {
     title: '24h %',
     dataIndex: 'percent_change_24h',
     key: 'percent_change_24h',
-    sorter: (a, b) => a - b,
     render: (_, row) => (
       <span style={row.quote.USD.percent_change_24h > 0 ? increaseValueColor : decreaseValueColor}>
         {`${row.quote.USD.percent_change_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}
@@ -69,7 +65,6 @@ const columns = [
     title: '7d %',
     dataIndex: 'percent_change_7d',
     key: 'percent_change_7d',
-    sorter: (a, b) => a - b,
     render: (_, row) => (
       <span style={row.quote.USD.percent_change_7d > 0 ? increaseValueColor : decreaseValueColor}>
         {`${row.quote.USD.percent_change_7d.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}%
@@ -80,21 +75,18 @@ const columns = [
     title: 'Market Cap',
     dataIndex: 'market_cap',
     key: 'market_cap',
-    sorter: (a, b) => a - b,
     render: (_, row) => `${row.quote.USD.market_cap.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`
   },
   {
     title: 'Volume (24h)',
     dataIndex: 'volume_24h',
     key: 'volume_24h',
-    sorter: (a, b) => a - b,
     render: (_, row) => `${row.quote.USD.volume_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`
   },
   {
     title: 'Circulating Supply',
     dataIndex: 'circulating_supply',
     key: 'circulating_supply',
-    sorter: (a, b) => a - b,
     render: (_, row) => `${row.circulating_supply.toLocaleString('en-US')} ${row.symbol}`
   }
 ];

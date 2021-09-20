@@ -14,12 +14,17 @@ export const useUser = () =>
     { refetchOnWindowFocus: false }
   );
 
-export const useCryptocurrency = ({ current, pageSize }) =>
+export const useCryptocurrency = ({ current, pageSize, sort, order }) =>
   useQuery(
-    ['cryptocurrency', { current, pageSize }],
+    ['cryptocurrency', { current, pageSize, sort, order }],
     async ({ queryKey }) => {
-      const { current, pageSize } = queryKey[1];
-      const response = await fetch(`/api/cryptocurrency?start=${current}&limit=${pageSize}`);
+      const { current, pageSize, sort, order } = queryKey[1];
+
+      let url = `/api/cryptocurrency?start=${current}&limit=${pageSize}`;
+      if (order) {
+        url += `&sort=${sort}&order=${order}`;
+      }
+      const response = await fetch(url);
       const json = await response.json();
       if (json.error_code) {
         throw new Error(json.error_message);
