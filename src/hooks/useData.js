@@ -35,8 +35,8 @@ export const useCoin = () =>
     async () => {
       const response = await fetch('/api/coin');
       const json = await response.json();
-      if (json.error) {
-        throw new Error('Fetch Coins response was not ok');
+      if (json.error_code) {
+        throw new Error(json.error_message);
       }
       return json;
     },
@@ -49,8 +49,8 @@ export const useConversion = ({ origin, destination, amount }) =>
     async ({ queryKey }) => {
       const response = await fetch(`/api/convert?origin=${origin}&destination=${destination}&amount=${amount}`);
       const json = await response.json();
-      if (json.error) {
-        throw new Error('Fetch Coins response was not ok');
+      if (json.error_code) {
+        throw new Error(json.error_message);
       }
       return json;
     },
@@ -66,8 +66,8 @@ export const useOptional = () =>
     async () => {
       const response = await fetch(`/api/optional`);
       const json = await response.json();
-      if (json.error) {
-        throw new Error('Fetch Optional response was not ok');
+      if (json.error_code) {
+        throw new Error(json.error_message);
       }
       return json;
     },
