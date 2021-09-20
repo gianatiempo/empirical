@@ -44,6 +44,7 @@ const Converter = () => {
           <Row>
             <Col span={10}>
               <Select
+                data-testid='origin'
                 style={inputStyle}
                 value={conversion.origin}
                 placeholder='Origin COIN'
@@ -60,6 +61,7 @@ const Converter = () => {
             </Col>
             <Col span={10} offset={1}>
               <Select
+                data-testid='destination'
                 style={inputStyle}
                 value={conversion.destination}
                 placeholder='Destination COIN'
