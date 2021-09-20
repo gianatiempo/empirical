@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 
-const crypto = (start, limit, sort, order) => {
+const crypto = (start, limit, sort, order, filter, value) => {
   const list = [
     {
       id: 1,
@@ -446,11 +446,15 @@ const crypto = (start, limit, sort, order) => {
     }
   ];
 
+  const filteredList = value
+    ? list.filter(item => (value === 'pos' ? item.quote.USD[filter] > 0 : item.quote.USD[filter] < 0))
+    : list;
+
   return order
     ? order === 'descend'
-      ? list.sort((a, b) => (a[sort] > b[sort] ? -1 : b[sort] > a[sort] ? 1 : 0))
-      : list.sort((a, b) => (a[sort] > b[sort] ? 1 : b[sort] > a[sort] ? -1 : 0))
-    : list;
+      ? filteredList.sort((a, b) => (a[sort] > b[sort] ? -1 : b[sort] > a[sort] ? 1 : 0))
+      : filteredList.sort((a, b) => (a[sort] > b[sort] ? 1 : b[sort] > a[sort] ? -1 : 0))
+    : filteredList;
 };
 
 export const cryptocurrencyHandlers = [
@@ -460,6 +464,8 @@ export const cryptocurrencyHandlers = [
     const limit = req.url.searchParams.get('limit');
     const sort = req.url.searchParams.get('sort') ?? undefined;
     const order = req.url.searchParams.get('order') ?? undefined;
+    const filter = req.url.searchParams.get('filter') ?? undefined;
+    const value = req.url.searchParams.get('value') ?? undefined;
 
     return res(
       ctx.json({
@@ -472,7 +478,7 @@ export const cryptocurrencyHandlers = [
           notice: null,
           total_count: 6663
         },
-        data: [...crypto(start, limit, sort, order)]
+        data: [...crypto(start, limit, sort, order, filter, value)]
       })
     );
   }),

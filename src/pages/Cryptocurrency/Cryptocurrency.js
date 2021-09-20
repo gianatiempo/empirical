@@ -8,11 +8,24 @@ const increaseValueColor = { color: '#3f8600' };
 const decreaseValueColor = { color: '#cf1322' };
 
 const Cryptocurrency = () => {
-  const [pagination, setPagination] = useState({ current: 1, pageSize: 10, sort: null, order: null });
+  const [pagination, setPagination] = useState({
+    current: 1,
+    pageSize: 10,
+    sort: null,
+    order: null,
+    filter: null,
+    value: null
+  });
   const { isLoading, isError, data, error } = useCryptocurrency(pagination);
 
-  const onChange = (paginationData, filtersData, sorter, extra) => {
-    if (extra.action === 'sort') {
+  const onChange = (_, filtersData, sorter, extra) => {
+    if (extra.action === 'filter') {
+      const filterKey = Object.keys(filtersData).filter(key => filtersData[key] !== null)[0] || null;
+      const filterValue = filterKey ? filtersData[filterKey][0] : null;
+      console.log(filterKey, filterValue);
+
+      setPagination({ ...pagination, filter: filterKey, value: filterValue });
+    } else if (extra.action === 'sort') {
       setPagination({ ...pagination, sort: sorter.columnKey, order: sorter.order });
     }
   };
@@ -25,9 +38,23 @@ const Cryptocurrency = () => {
     return <Error message={error.message} />;
   }
 
+  const extendedCol = columns.map(col => {
+    if (col.dataIndex === pagination.filter) {
+      col['filteredValue'] = [pagination.value];
+    } else {
+      col['filteredValue'] = null;
+    }
+    if (col.dataIndex === pagination.sort) {
+      col['sortOrder'] = pagination.order;
+    } else {
+      col['sortOrder'] = null;
+    }
+    return col;
+  });
+
   return (
     <>
-      <Table columns={columns} dataSource={data.data} rowKey='id' pagination={false} onChange={onChange} />
+      <Table columns={extendedCol} dataSource={data.data} rowKey='id' pagination={false} onChange={onChange} />
       <Pagination
         style={paginationStyle}
         size='small'
@@ -55,6 +82,10 @@ const columns = [
     title: '24h %',
     dataIndex: 'percent_change_24h',
     key: 'percent_change_24h',
+    filters: [
+      { text: 'Positive values', value: 'pos' },
+      { text: 'Negative values', value: 'neg' }
+    ],
     render: (_, row) => (
       <span style={row.quote.USD.percent_change_24h > 0 ? increaseValueColor : decreaseValueColor}>
         {`${row.quote.USD.percent_change_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}
@@ -65,6 +96,10 @@ const columns = [
     title: '7d %',
     dataIndex: 'percent_change_7d',
     key: 'percent_change_7d',
+    filters: [
+      { text: 'Positive values', value: 'pos' },
+      { text: 'Negative values', value: 'neg' }
+    ],
     render: (_, row) => (
       <span style={row.quote.USD.percent_change_7d > 0 ? increaseValueColor : decreaseValueColor}>
         {`${row.quote.USD.percent_change_7d.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}%

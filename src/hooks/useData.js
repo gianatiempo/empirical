@@ -14,13 +14,16 @@ export const useUser = () =>
     { refetchOnWindowFocus: false }
   );
 
-export const useCryptocurrency = ({ current, pageSize, sort, order }) =>
+export const useCryptocurrency = ({ current, pageSize, sort, order, filter, value }) =>
   useQuery(
-    ['cryptocurrency', { current, pageSize, sort, order }],
+    ['cryptocurrency', { current, pageSize, sort, order, filter, value }],
     async ({ queryKey }) => {
-      const { current, pageSize, sort, order } = queryKey[1];
+      const { current, pageSize, sort, order, filter, value } = queryKey[1];
 
       let url = `/api/cryptocurrency?start=${current}&limit=${pageSize}`;
+      if (value) {
+        url += `&filter=${filter}&value=${value}`;
+      }
       if (order) {
         url += `&sort=${sort}&order=${order}`;
       }
