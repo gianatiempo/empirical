@@ -24,9 +24,15 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.get('/api/cryptocurrency', async (req, res) => {
   const start = req.query.start || 1;
   const limit = req.query.limit || 10;
+  const sort = req.query.sort || 'id';
 
   const uri = requestOptionsBase.uri + 'cryptocurrency/listings/latest';
-  const qs = { start: 1 + (start - 1) * limit, limit: start * limit, convert: 'USD' };
+  const qs = {
+    start: 1 + (start - 1) * limit,
+    limit: start * limit,
+    convert: 'USD',
+    sort
+  };
 
   const response = await rp({ ...requestOptionsBase, uri, qs }).catch(err => err.error.status);
 
