@@ -4,6 +4,8 @@ import { useCryptocurrency } from '../../hooks/useData';
 import { Spinner, Error } from '../../components';
 
 const paginationStyle = { padding: '10px 0', float: 'right' };
+const increaseValueColor = { color: '#3f8600' };
+const decreaseValueColor = { color: '#cf1322' };
 
 const Cryptocurrency = () => {
   const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
@@ -27,14 +29,7 @@ const Cryptocurrency = () => {
 
   return (
     <>
-      <Table
-        columns={columns}
-        dataSource={data.data}
-        rowKey='id'
-        size='middle'
-        pagination={false}
-        onChange={onChange}
-      />
+      <Table columns={columns} dataSource={data.data} rowKey='id' pagination={false} onChange={onChange} />
       <Pagination
         style={paginationStyle}
         size='small'
@@ -48,9 +43,6 @@ const Cryptocurrency = () => {
     </>
   );
 };
-
-const increaseValueColor = { color: '#3f8600' };
-const decreaseValueColor = { color: '#cf1322' };
 
 const columns = [
   { title: '#', dataIndex: 'cmc_rank', key: 'cmc_rank' },

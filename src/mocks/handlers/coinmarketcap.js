@@ -3,6 +3,9 @@ import { rest } from 'msw';
 export const cryptocurrencyHandlers = [
   //cryptocurrency page
   rest.get('/api/cryptocurrency', (req, res, ctx) => {
+    const start = req.url.searchParams.get('start');
+    const limit = req.url.searchParams.get('limit');
+
     return res(
       ctx.json({
         status: {
@@ -17,7 +20,7 @@ export const cryptocurrencyHandlers = [
         data: [
           {
             id: 1,
-            name: 'Bitcoin',
+            name: 'Coin ' + (1 + (start - 1) * limit),
             symbol: 'BTC',
             slug: 'bitcoin',
             num_market_pairs: 8757,
@@ -57,7 +60,7 @@ export const cryptocurrencyHandlers = [
             circulating_supply: 18818562,
             total_supply: 18818562,
             platform: null,
-            cmc_rank: 1,
+            cmc_rank: 1 + (start - 1) * limit,
             last_updated: '2021-09-17T19:08:02.000Z',
             quote: {
               USD: {
@@ -78,7 +81,7 @@ export const cryptocurrencyHandlers = [
           },
           {
             id: 1027,
-            name: 'Ethereum',
+            name: 'Coin ' + (2 + (start - 1) * limit),
             symbol: 'ETH',
             slug: 'ethereum',
             num_market_pairs: 5078,
@@ -119,7 +122,7 @@ export const cryptocurrencyHandlers = [
             circulating_supply: 117563903.1865,
             total_supply: 117563903.1865,
             platform: null,
-            cmc_rank: 2,
+            cmc_rank: 2 + (start - 1) * limit,
             last_updated: '2021-09-17T19:08:02.000Z',
             quote: {
               USD: {
@@ -140,7 +143,7 @@ export const cryptocurrencyHandlers = [
           },
           {
             id: 2010,
-            name: 'Cardano',
+            name: 'Coin ' + (3 + (start - 1) * limit),
             symbol: 'ADA',
             slug: 'cardano',
             num_market_pairs: 303,
@@ -159,7 +162,7 @@ export const cryptocurrencyHandlers = [
             circulating_supply: 32038100543.532,
             total_supply: 33117618880.453,
             platform: null,
-            cmc_rank: 3,
+            cmc_rank: 3 + (start - 1) * limit,
             last_updated: '2021-09-17T19:07:09.000Z',
             quote: {
               USD: {
@@ -180,7 +183,7 @@ export const cryptocurrencyHandlers = [
           },
           {
             id: 1839,
-            name: 'Binance Coin',
+            name: 'Coin ' + (4 + (start - 1) * limit),
             symbol: 'BNB',
             slug: 'binance-coin',
             num_market_pairs: 525,
@@ -197,7 +200,7 @@ export const cryptocurrencyHandlers = [
             circulating_supply: 168137036,
             total_supply: 168137036,
             platform: null,
-            cmc_rank: 4,
+            cmc_rank: 4 + (start - 1) * limit,
             last_updated: '2021-09-17T19:07:08.000Z',
             quote: {
               USD: {
@@ -218,7 +221,7 @@ export const cryptocurrencyHandlers = [
           },
           {
             id: 825,
-            name: 'Tether',
+            name: 'Coin ' + (5 + (start - 1) * limit),
             symbol: 'USDT',
             slug: 'tether',
             num_market_pairs: 18293,
@@ -241,7 +244,7 @@ export const cryptocurrencyHandlers = [
               slug: 'ethereum',
               token_address: '0xdac17f958d2ee523a2206206994597c13d831ec7'
             },
-            cmc_rank: 5,
+            cmc_rank: 5 + (start - 1) * limit,
             last_updated: '2021-09-17T19:07:08.000Z',
             quote: {
               USD: {
@@ -262,7 +265,7 @@ export const cryptocurrencyHandlers = [
           },
           {
             id: 52,
-            name: 'XRP',
+            name: 'Coin ' + (6 + (start - 1) * limit),
             symbol: 'XRP',
             slug: 'xrp',
             num_market_pairs: 648,
@@ -280,7 +283,7 @@ export const cryptocurrencyHandlers = [
             circulating_supply: 46622239005,
             total_supply: 99990263493,
             platform: null,
-            cmc_rank: 6,
+            cmc_rank: 6 + (start - 1) * limit,
             last_updated: '2021-09-17T19:08:03.000Z',
             quote: {
               USD: {
@@ -301,7 +304,7 @@ export const cryptocurrencyHandlers = [
           },
           {
             id: 5426,
-            name: 'Solana',
+            name: 'Coin ' + (7 + (start - 1) * limit),
             symbol: 'SOL',
             slug: 'solana',
             num_market_pairs: 145,
@@ -319,7 +322,7 @@ export const cryptocurrencyHandlers = [
             circulating_supply: 296831348.65703416,
             total_supply: 504301007.3268605,
             platform: null,
-            cmc_rank: 7,
+            cmc_rank: 7 + (start - 1) * limit,
             last_updated: '2021-09-17T19:08:04.000Z',
             quote: {
               USD: {
@@ -340,7 +343,7 @@ export const cryptocurrencyHandlers = [
           },
           {
             id: 6636,
-            name: 'Polkadot',
+            name: 'Coin ' + (8 + (start - 1) * limit),
             symbol: 'DOT',
             slug: 'polkadot-new',
             num_market_pairs: 246,
@@ -370,7 +373,7 @@ export const cryptocurrencyHandlers = [
             circulating_supply: 987579314.957085,
             total_supply: 1103303471.382273,
             platform: null,
-            cmc_rank: 8,
+            cmc_rank: 8 + (start - 1) * limit,
             last_updated: '2021-09-17T19:08:06.000Z',
             quote: {
               USD: {
@@ -391,7 +394,7 @@ export const cryptocurrencyHandlers = [
           },
           {
             id: 74,
-            name: 'Dogecoin',
+            name: 'Coin ' + (9 + (start - 1) * limit),
             symbol: 'DOGE',
             slug: 'dogecoin',
             num_market_pairs: 393,
@@ -410,7 +413,7 @@ export const cryptocurrencyHandlers = [
             circulating_supply: 131324264611.03217,
             total_supply: 131324264611.03217,
             platform: null,
-            cmc_rank: 9,
+            cmc_rank: 9 + (start - 1) * limit,
             last_updated: '2021-09-17T19:08:03.000Z',
             quote: {
               USD: {
@@ -431,7 +434,7 @@ export const cryptocurrencyHandlers = [
           },
           {
             id: 3408,
-            name: 'USD Coin',
+            name: 'Coin ' + (10 + (start - 1) * limit),
             symbol: 'USDC',
             slug: 'usd-coin',
             num_market_pairs: 1624,
@@ -453,7 +456,7 @@ export const cryptocurrencyHandlers = [
               slug: 'ethereum',
               token_address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
             },
-            cmc_rank: 10,
+            cmc_rank: 10 + (start - 1) * limit,
             last_updated: '2021-09-17T19:08:05.000Z',
             quote: {
               USD: {
