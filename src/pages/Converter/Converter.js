@@ -24,7 +24,9 @@ const Converter = () => {
 
   const coinList = coins.data[Object.keys(coins.data)[0]];
   const conversionKey = converted ? Object.keys(converted.data)[0] : null;
-  const convertedValue = conversionKey ? converted.data[conversionKey].quote[conversionKey].price.toFixed(8) : null;
+  const conversionKey2 = converted ? Object.keys(converted.data[conversionKey].quote)[0] : null;
+  const convertedValue = conversionKey ? converted.data[conversionKey].quote[conversionKey2].price.toFixed(8) : null;
+
   return (
     <>
       <Card bordered={false} bodyStyle={cardStyle}>
