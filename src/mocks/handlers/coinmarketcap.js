@@ -662,16 +662,16 @@ export const cryptocurrencyHandlers = [
           },
           usage: {
             current_minute: {
-              requests_made: 1,
-              requests_left: 59
+              requests_made: 30,
+              requests_left: 30
             },
             current_day: {
-              credits_used: 1,
-              credits_left: 3999
+              credits_used: 2346,
+              credits_left: 1654
             },
             current_month: {
-              credits_used: 1,
-              credits_left: 119999
+              credits_used: 75832,
+              credits_left: 44168
             }
           }
         },
