@@ -33,6 +33,7 @@ const Converter = () => {
             <Col span={10}>
               <InputNumber
                 style={inputStyle}
+                placeholder='Amount'
                 min='0'
                 step='0.00000001'
                 stringMode
