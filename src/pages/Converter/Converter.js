@@ -22,10 +22,7 @@ const Converter = () => {
     return <Error message={error.message} />;
   }
 
-  const coinList = coins.data;
-  const conversionKey = converted ? Object.keys(converted.data)[0] : null;
-  const conversionKey2 = converted ? Object.keys(converted.data[conversionKey].quote)[0] : null;
-  const convertedValue = conversionKey ? converted.data[conversionKey].quote[conversionKey2].price.toFixed(8) : null;
+  const convertedValue = converted ? converted.data.quote[conversion.destination].price.toFixed(8) : null;
 
   return (
     <>
@@ -51,7 +48,7 @@ const Converter = () => {
                 value={conversion.origin}
                 placeholder='Origin COIN'
                 onChange={value => setConversion({ ...conversion, origin: value })}>
-                {coinList.map(coin => (
+                {coins.data.map(coin => (
                   <Option key={coin.symbol}>
                     {coin.name} - {coin.symbol}
                   </Option>
@@ -68,7 +65,7 @@ const Converter = () => {
                 value={conversion.destination}
                 placeholder='Destination COIN'
                 onChange={value => setConversion({ ...conversion, destination: value })}>
-                {coinList.map(coin => (
+                {coins.data.map(coin => (
                   <Option key={coin.symbol}>
                     {coin.name} - {coin.symbol}
                   </Option>
