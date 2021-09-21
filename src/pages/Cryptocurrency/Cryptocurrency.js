@@ -1,5 +1,6 @@
 import { Table, Pagination } from 'antd';
 import { useState } from 'react';
+import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { useCryptocurrency } from '../../hooks/useData';
 import { Spinner, Error } from '../../components';
 
@@ -88,6 +89,7 @@ const columns = [
     ],
     render: (_, row) => (
       <span style={row.quote.USD.percent_change_24h > 0 ? increaseValueColor : decreaseValueColor}>
+        {row.quote.USD.percent_change_24h > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}&nbsp;
         {`${row.quote.USD.percent_change_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}
       </span>
     )
@@ -102,6 +104,7 @@ const columns = [
     ],
     render: (_, row) => (
       <span style={row.quote.USD.percent_change_7d > 0 ? increaseValueColor : decreaseValueColor}>
+        {row.quote.USD.percent_change_7d > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}&nbsp;
         {`${row.quote.USD.percent_change_7d.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`}%
       </span>
     )
@@ -122,7 +125,14 @@ const columns = [
     title: 'Circulating Supply',
     dataIndex: 'circulating_supply',
     key: 'circulating_supply',
-    render: (_, row) => `${row.circulating_supply.toLocaleString('en-US')} ${row.symbol}`
+    render: (_, row) => (
+      <span>
+        <b>{`${row.circulating_supply.toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        })} ${row.symbol}`}</b>
+      </span>
+    )
   }
 ];
 
