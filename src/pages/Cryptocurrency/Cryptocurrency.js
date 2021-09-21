@@ -23,7 +23,6 @@ const Cryptocurrency = () => {
     if (extra.action === 'filter') {
       const filterKey = Object.keys(filtersData).filter(key => filtersData[key] !== null)[0] || null;
       const filterValue = filterKey ? filtersData[filterKey][0] : null;
-      console.log(filterKey, filterValue);
 
       setPagination({ ...pagination, filter: filterKey, value: filterValue });
     } else if (extra.action === 'sort') {
