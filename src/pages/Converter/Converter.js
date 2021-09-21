@@ -22,7 +22,7 @@ const Converter = () => {
     return <Error message={error.message} />;
   }
 
-  const coinList = coins.data[Object.keys(coins.data)[0]];
+  const coinList = coins.data;
   const conversionKey = converted ? Object.keys(converted.data)[0] : null;
   const conversionKey2 = converted ? Object.keys(converted.data[conversionKey].quote)[0] : null;
   const convertedValue = conversionKey ? converted.data[conversionKey].quote[conversionKey2].price.toFixed(8) : null;

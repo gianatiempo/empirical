@@ -10,7 +10,7 @@ const cardStyle = { display: 'flex', flexDirection: 'column', marginBottom: 8 };
 const titleStyle = { display: 'flex', margin: 0, justifyContent: 'center' };
 
 const Chart = () => {
-  const { isLoading, isError, data, error } = useCryptocurrency({ current: 1, pageSize: 30 });
+  const { isLoading, isError, data, error } = useCryptocurrency({ current: 1, pageSize: 10 });
 
   if (isLoading) {
     return <Spinner />;
