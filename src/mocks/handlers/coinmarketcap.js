@@ -495,132 +495,130 @@ export const cryptocurrencyHandlers = [
           credit_count: 1,
           notice: null
         },
-        data: {
-          'BTC,ETH,ADA,BNB,USDT,XRP,AVAX,DOT,DOGE,USDC': [
-            {
-              id: 2010,
-              name: 'Cardano',
-              symbol: 'ADA',
-              slug: 'cardano',
-              rank: 3,
-              is_active: 1,
-              first_historical_data: '2017-10-01T20:34:25.000Z',
-              last_historical_data: '2021-09-18T19:39:19.000Z',
-              platform: null
-            },
-            {
-              id: 5805,
-              name: 'Avalanche',
-              symbol: 'AVAX',
-              slug: 'avalanche',
-              rank: 11,
-              is_active: 1,
-              first_historical_data: '2020-09-22T06:44:00.000Z',
-              last_historical_data: '2021-09-18T19:39:07.000Z',
-              platform: null
-            },
-            {
-              id: 1839,
-              name: 'Binance Coin',
-              symbol: 'BNB',
-              slug: 'binance-coin',
-              rank: 4,
-              is_active: 1,
-              first_historical_data: '2017-07-25T04:30:05.000Z',
-              last_historical_data: '2021-09-18T19:39:16.000Z',
-              platform: null
-            },
-            {
-              id: 1,
-              name: 'Bitcoin',
-              symbol: 'BTC',
-              slug: 'bitcoin',
-              rank: 1,
-              is_active: 1,
-              first_historical_data: '2013-04-28T18:47:21.000Z',
-              last_historical_data: '2021-09-18T19:39:02.000Z',
-              platform: null
-            },
-            {
-              id: 74,
-              name: 'Dogecoin',
-              symbol: 'DOGE',
-              slug: 'dogecoin',
-              rank: 9,
-              is_active: 1,
-              first_historical_data: '2013-12-15T14:42:34.000Z',
-              last_historical_data: '2021-09-18T19:39:03.000Z',
-              platform: null
-            },
-            {
-              id: 6636,
-              name: 'Polkadot',
-              symbol: 'DOT',
-              slug: 'polkadot-new',
-              rank: 8,
-              is_active: 1,
-              first_historical_data: '2020-08-20T03:29:22.000Z',
-              last_historical_data: '2021-09-18T19:39:06.000Z',
-              platform: null
-            },
-            {
+        data: [
+          {
+            id: 2010,
+            name: 'Cardano',
+            symbol: 'ADA',
+            slug: 'cardano',
+            rank: 3,
+            is_active: 1,
+            first_historical_data: '2017-10-01T20:34:25.000Z',
+            last_historical_data: '2021-09-18T19:39:19.000Z',
+            platform: null
+          },
+          {
+            id: 5805,
+            name: 'Avalanche',
+            symbol: 'AVAX',
+            slug: 'avalanche',
+            rank: 11,
+            is_active: 1,
+            first_historical_data: '2020-09-22T06:44:00.000Z',
+            last_historical_data: '2021-09-18T19:39:07.000Z',
+            platform: null
+          },
+          {
+            id: 1839,
+            name: 'Binance Coin',
+            symbol: 'BNB',
+            slug: 'binance-coin',
+            rank: 4,
+            is_active: 1,
+            first_historical_data: '2017-07-25T04:30:05.000Z',
+            last_historical_data: '2021-09-18T19:39:16.000Z',
+            platform: null
+          },
+          {
+            id: 1,
+            name: 'Bitcoin',
+            symbol: 'BTC',
+            slug: 'bitcoin',
+            rank: 1,
+            is_active: 1,
+            first_historical_data: '2013-04-28T18:47:21.000Z',
+            last_historical_data: '2021-09-18T19:39:02.000Z',
+            platform: null
+          },
+          {
+            id: 74,
+            name: 'Dogecoin',
+            symbol: 'DOGE',
+            slug: 'dogecoin',
+            rank: 9,
+            is_active: 1,
+            first_historical_data: '2013-12-15T14:42:34.000Z',
+            last_historical_data: '2021-09-18T19:39:03.000Z',
+            platform: null
+          },
+          {
+            id: 6636,
+            name: 'Polkadot',
+            symbol: 'DOT',
+            slug: 'polkadot-new',
+            rank: 8,
+            is_active: 1,
+            first_historical_data: '2020-08-20T03:29:22.000Z',
+            last_historical_data: '2021-09-18T19:39:06.000Z',
+            platform: null
+          },
+          {
+            id: 1027,
+            name: 'Ethereum',
+            symbol: 'ETH',
+            slug: 'ethereum',
+            rank: 2,
+            is_active: 1,
+            first_historical_data: '2015-08-07T14:49:30.000Z',
+            last_historical_data: '2021-09-18T19:39:02.000Z',
+            platform: null
+          },
+          {
+            id: 3408,
+            name: 'USD Coin',
+            symbol: 'USDC',
+            slug: 'usd-coin',
+            rank: 10,
+            is_active: 1,
+            first_historical_data: '2018-10-08T18:49:28.000Z',
+            last_historical_data: '2021-09-18T19:39:05.000Z',
+            platform: {
               id: 1027,
               name: 'Ethereum',
               symbol: 'ETH',
               slug: 'ethereum',
-              rank: 2,
-              is_active: 1,
-              first_historical_data: '2015-08-07T14:49:30.000Z',
-              last_historical_data: '2021-09-18T19:39:02.000Z',
-              platform: null
-            },
-            {
-              id: 3408,
-              name: 'USD Coin',
-              symbol: 'USDC',
-              slug: 'usd-coin',
-              rank: 10,
-              is_active: 1,
-              first_historical_data: '2018-10-08T18:49:28.000Z',
-              last_historical_data: '2021-09-18T19:39:05.000Z',
-              platform: {
-                id: 1027,
-                name: 'Ethereum',
-                symbol: 'ETH',
-                slug: 'ethereum',
-                token_address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
-              }
-            },
-            {
-              id: 825,
-              name: 'Tether',
-              symbol: 'USDT',
-              slug: 'tether',
-              rank: 5,
-              is_active: 1,
-              first_historical_data: '2015-02-25T13:34:26.000Z',
-              last_historical_data: '2021-09-18T19:39:19.000Z',
-              platform: {
-                id: 1027,
-                name: 'Ethereum',
-                symbol: 'ETH',
-                slug: 'ethereum',
-                token_address: '0xdac17f958d2ee523a2206206994597c13d831ec7'
-              }
-            },
-            {
-              id: 52,
-              name: 'XRP',
-              symbol: 'XRP',
-              slug: 'xrp',
-              rank: 6,
-              is_active: 1,
-              first_historical_data: '2013-08-04T18:51:05.000Z',
-              last_historical_data: '2021-09-18T19:39:03.000Z',
-              platform: null
+              token_address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
             }
-          ]
-        }
+          },
+          {
+            id: 825,
+            name: 'Tether',
+            symbol: 'USDT',
+            slug: 'tether',
+            rank: 5,
+            is_active: 1,
+            first_historical_data: '2015-02-25T13:34:26.000Z',
+            last_historical_data: '2021-09-18T19:39:19.000Z',
+            platform: {
+              id: 1027,
+              name: 'Ethereum',
+              symbol: 'ETH',
+              slug: 'ethereum',
+              token_address: '0xdac17f958d2ee523a2206206994597c13d831ec7'
+            }
+          },
+          {
+            id: 52,
+            name: 'XRP',
+            symbol: 'XRP',
+            slug: 'xrp',
+            rank: 6,
+            is_active: 1,
+            first_historical_data: '2013-08-04T18:51:05.000Z',
+            last_historical_data: '2021-09-18T19:39:03.000Z',
+            platform: null
+          }
+        ]
       })
     );
   }),
@@ -639,14 +637,12 @@ export const cryptocurrencyHandlers = [
           notice: null
         },
         data: {
-          [`${destination}`]: {
-            id: 1,
-            symbol: [`${destination}`],
-            name: destination,
-            amount: amount,
-            last_updated: '2021-09-18T19:57:02.000Z',
-            quote: { [`${destination}`]: { price: 28.062789092846057, last_updated: '2021-09-18T19:57:02.000Z' } }
-          }
+          id: 1,
+          symbol: [`${destination}`],
+          name: destination,
+          amount: amount,
+          last_updated: '2021-09-18T19:57:02.000Z',
+          quote: { [`${destination}`]: { price: 28.062789092846057, last_updated: '2021-09-18T19:57:02.000Z' } }
         }
       })
     );

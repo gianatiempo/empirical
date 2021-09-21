@@ -84,6 +84,11 @@ const Optional = () => {
               worker is initialized, consuming all mock data for the browser from the handlers in the{' '}
               <Text code>mocks</Text> folder.
             </Item>
+            <Item color='blue'>
+              Custom upload script to update <Text code>package.json</Text> version on each upload. It updates the
+              version after the changes are being upload, which is not the ideal but for the objective of the challenge
+              is more than enough.
+            </Item>
           </Timeline>
         </Card>
         <Title level={2} style={h2Style}>
@@ -177,7 +182,7 @@ const Optional = () => {
                 <pre>{`--------------------------|---------|----------|---------|---------|-------------------
 File                      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------------|---------|----------|---------|---------|-------------------
-All files                 |   92.09 |    77.61 |   93.48 |    92.4 |                   
+All files                 |   92.94 |    78.46 |   93.48 |   93.29 |                   
  src                      |     100 |      100 |     100 |     100 |                   
   App.js                  |     100 |      100 |     100 |     100 |                   
  src/components/Error     |     100 |      100 |     100 |     100 |                   
@@ -192,17 +197,17 @@ All files                 |   92.09 |    77.61 |   93.48 |    92.4 |
   Chart.js                |     100 |      100 |     100 |     100 |                   
  src/pages/Converter      |     100 |      100 |     100 |     100 |                   
   Converter.js            |     100 |      100 |     100 |     100 |                   
- src/pages/Cryptocurrency |   71.05 |       50 |   76.92 |   72.97 |                   
-  Cryptocurrency.js       |   71.05 |       50 |   76.92 |   72.97 | 22-29,43,48,74    
+ src/pages/Cryptocurrency |   73.53 |    59.09 |   76.92 |   75.76 |                   
+  Cryptocurrency.js       |   73.53 |    59.09 |   76.92 |   75.76 | 23-29,48,74       
  src/pages/Optional       |     100 |       75 |     100 |     100 |                   
-  Optional.js             |     100 |       75 |     100 |     100 | 181-185           
+  Optional.js             |     100 |       75 |     100 |     100 | 220-224           
 --------------------------|---------|----------|---------|---------|-------------------
-Jest: "global" coverage threshold for branches (80%) not met: 77.61%
+Jest: "global" coverage threshold for branches (80%) not met: 78.46%
 
 Test Suites: 8 passed, 8 total
 Tests:       13 passed, 13 total
 Snapshots:   0 total
-Time:        7.726 s`}</pre>
+Time:        6.894 s, estimated 8 s`}</pre>
               </Paragraph>
             </Item>
           </Timeline>
