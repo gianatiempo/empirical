@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.get('/api/cryptocurrency', async (req, res) => {
   const start = req.query.start || 1;
   const limit = req.query.limit || 10;
-  const sort = req.query.sort || 'id';
+  const sort = req.query.sort || 'market_cap';
 
   const uri = requestOptionsBase.uri + 'cryptocurrency/listings/latest';
   const qs = {

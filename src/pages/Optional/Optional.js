@@ -205,7 +205,6 @@ Snapshots:   0 total
 Time:        7.726 s`}</pre>
               </Paragraph>
             </Item>
-            <Item color='red'></Item>
           </Timeline>
         </Card>
       </Col>
