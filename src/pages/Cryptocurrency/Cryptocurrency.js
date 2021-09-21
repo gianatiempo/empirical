@@ -39,11 +39,11 @@ const Cryptocurrency = () => {
   }
 
   const extendedCol = columns.map(col => {
-    if (col.dataIndex === pagination.filter) {
-      col['filteredValue'] = [pagination.value];
-    } else {
-      col['filteredValue'] = null;
-    }
+    // if (col.dataIndex === pagination.filter) {
+    //   col['filteredValue'] = [pagination.value];
+    // } else {
+    //   col['filteredValue'] = null;
+    // }
     if (col.dataIndex === pagination.sort) {
       col['sortOrder'] = pagination.order;
     } else {
@@ -71,7 +71,7 @@ const Cryptocurrency = () => {
 
 const columns = [
   { title: '#', dataIndex: 'cmc_rank', key: 'cmc_rank' },
-  { title: 'Name', dataIndex: 'name', key: 'name', sorter: (a, b) => a - b, sortDirections: ['ascend', 'descend'] },
+  { title: 'Name', dataIndex: 'name', key: 'name', sorter: (a, b) => a - b, sortDirections: ['ascend'] },
   {
     title: 'Price',
     dataIndex: 'price',
@@ -82,10 +82,10 @@ const columns = [
     title: '24h %',
     dataIndex: 'percent_change_24h',
     key: 'percent_change_24h',
-    filters: [
-      { text: 'Positive values', value: 'pos' },
-      { text: 'Negative values', value: 'neg' }
-    ],
+    // filters: [
+    //   { text: 'Positive values', value: 'pos' },
+    //   { text: 'Negative values', value: 'neg' }
+    // ],
     render: (_, row) => (
       <span style={row.quote.USD.percent_change_24h > 0 ? increaseValueColor : decreaseValueColor}>
         {row.quote.USD.percent_change_24h > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}&nbsp;
@@ -97,10 +97,10 @@ const columns = [
     title: '7d %',
     dataIndex: 'percent_change_7d',
     key: 'percent_change_7d',
-    filters: [
-      { text: 'Positive values', value: 'pos' },
-      { text: 'Negative values', value: 'neg' }
-    ],
+    // filters: [
+    //   { text: 'Positive values', value: 'pos' },
+    //   { text: 'Negative values', value: 'neg' }
+    // ],
     render: (_, row) => (
       <span style={row.quote.USD.percent_change_7d > 0 ? increaseValueColor : decreaseValueColor}>
         {row.quote.USD.percent_change_7d > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}&nbsp;
